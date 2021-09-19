@@ -1,10 +1,30 @@
 from kivy.lang import Builder
 from kivymd.app import MDApp
+import sqlite3
+
+# generate random integer values
+from random import seed
+from random import randint
+# seed random number generator
+seed(1)
+# generate some integers
+value = randint(0, 1000)
+
 
 class MainApp(MDApp):
     def build(self):
         self.theme_cls.theme_style ="Dark"
         self.theme_cls.primary_palette ="BlueGray"
+         #create Database Or Connect TO Onw
+        connect1 = sqlite3.connect('../db/users.db')
+        #create a cursor
+        c = connect1.cursor()
+        #create a table
+        c.execute("""CREATE TABLE if not exists userCredentials(userID text,username text,password text )""")
+        #commit our changes
+        connect1.commit()
+        #close conncetion
+        connect1.close()
         return Builder.load_file('signup.kv')
 
     
@@ -28,9 +48,25 @@ class MainApp(MDApp):
                 self.root.ids.user.text= ''
                 self.root.ids.password.text=''
             else:
+                #create Database Or Connect TO Onw
+                connect1 = sqlite3.connect('../db/users.db')
+                #create a cursor
+                c = connect1.cursor()
+                #create a table
+                c.execute("INSERT INTO userCredentials VALUES(:userID,:username,:password)",{
+                    'userID':f'{self.root.ids.user.text}{value}',
+                    'username':self.root.ids.user.text,
+                    'password':self.root.ids.password.text
+                })
                 self.root.ids.register_label.text= f' {self.root.ids.user.text} Registered'
                 self.root.ids.user.text= ''
                 self.root.ids.password.text=''
+                #commit our changes
+                connect1.commit()
+                #close conncetion
+                connect1.close()
+
+
 
         
         
