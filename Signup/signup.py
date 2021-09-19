@@ -36,17 +36,20 @@ class MainApp(MDApp):
             self.root.ids.register_label.text= 'Username too short'
             self.root.ids.user.text= ''
             self.root.ids.password.text=''
+            self.root.ids.password2.text=''
 
         else:
             if len(self.root.ids.password.text) <= 5:
                 self.root.ids.register_label.text= 'Weak Password'
                 self.root.ids.user.text= ''
                 self.root.ids.password.text=''
+                self.root.ids.password2.text=''
 
             elif  self.root.ids.password.text != self.root.ids.password2.text:
                 self.root.ids.register_label.text= 'Password doesnt match'
                 self.root.ids.user.text= ''
                 self.root.ids.password.text=''
+                self.root.ids.password2.text=''
             else:
                 #create Database Or Connect TO Onw
                 connect1 = sqlite3.connect('../db/users.db')
@@ -61,6 +64,7 @@ class MainApp(MDApp):
                 self.root.ids.register_label.text= f' {self.root.ids.user.text} Registered'
                 self.root.ids.user.text= ''
                 self.root.ids.password.text=''
+                self.root.ids.password2.text=''
                 #commit our changes
                 connect1.commit()
                 #close conncetion
@@ -72,8 +76,9 @@ class MainApp(MDApp):
         
 
     def clear(self):
-        self.root.ids.register_label.text="WELCOME"
+        self.root.ids.register_label.text="REGISTRATION"
         self.root.ids.user.text= ''
         self.root.ids.password.text=''
+        self.root.ids.password2.text=''
 
 MainApp().run()
