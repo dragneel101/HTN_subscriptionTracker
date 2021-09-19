@@ -3,10 +3,7 @@ from kivymd.app import MDApp
 import sqlite3
 
 # generate random integer values
-from random import seed
 from random import randint
-# seed random number generator
-seed(1)
 # generate some integers
 value = randint(0, 1000)
 
@@ -51,6 +48,7 @@ class MainApp(MDApp):
                 self.root.ids.password.text=''
                 self.root.ids.password2.text=''
             else:
+                value = randint(0, 1000)
                 #create Database Or Connect TO Onw
                 connect1 = sqlite3.connect('../db/users.db')
                 #create a cursor
