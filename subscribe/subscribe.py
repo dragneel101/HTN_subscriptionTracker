@@ -1,6 +1,7 @@
 from kivy.lang import Builder
 from kivymd.app import MDApp
 import sqlite3
+import datetime
 
 # generate random integer values
 from random import seed
@@ -44,6 +45,15 @@ class MainApp(MDApp):
         self.root.ids.duedate.text=''
         #commit our changes
         connect1.commit()
+
+        c.execute("SELECT * FROM subscriptions")
+        records = c.fetchall()
+        current_date = datetime.date.today()
+        for row in records:
+            duedate = datetime.datetime.strptime("%Y%m%d").date()
+            if (duedate - current_date).days < 5:
+                pass
+                # send an email
         #close conncetion
         connect1.close()
 
