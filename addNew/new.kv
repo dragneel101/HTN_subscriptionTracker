@@ -1,0 +1,51 @@
+MDBoxLayout:
+    orientation: "vertical"
+    MDToolbar:
+        type: "top"
+        title: "SHELFLIFE"
+        anchor_title: "center"
+        md_bg_color: 76/255,25/255,25/255,1
+    MDBoxLayout:
+        orientation: "vertical"
+        MDLabel:
+            text: "subscription"
+            halign: "left"
+        MDTextFieldRound:
+            id:subscription
+            hint_text: "Subscription"
+    MDBoxLayout:
+        orientation: "vertical"
+        MDLabel:
+            text: "subscription Plan"
+            halign: "left"
+        MDTextFieldRound:
+            id:Plan
+            hint_text: "Subscription"
+    MDBoxLayout:
+        orientation: "vertical"
+        MDLabel:
+            text: "Plan Registration Date"
+            halign: "left"
+        MDBoxLayout:
+            orientation: "horizontal"
+            MDLabel:
+                id: date_label
+                text: ""
+                halign: "left"
+            MDRaisedButton:
+                text: "Open Date Picker"
+                on_press:app.show_date_picker()
+            
+
+
+    MDRaisedButton:
+        text: "Add New Subscription"
+        md_bg_color: 1, 0, 1, 1
+        pos_hint:{"center_x":0.5}
+    Widget:
+        size_hint_y:None
+        height:"30dp"
+
+        
+
+            
